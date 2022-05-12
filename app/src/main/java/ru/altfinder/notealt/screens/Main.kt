@@ -28,6 +28,10 @@ import ru.altfinder.notealt.MainViewModelFactory
 import ru.altfinder.notealt.model.Note
 import ru.altfinder.notealt.navigation.NavRoute
 import ru.altfinder.notealt.ui.theme.NoteAltTheme
+import ru.altfinder.notealt.utils.Constants
+import ru.altfinder.notealt.utils.DB_TYPE
+import ru.altfinder.notealt.utils.TYPE_FIREBASE
+import ru.altfinder.notealt.utils.TYPE_ROOM
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -39,49 +43,51 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                     navController.navigate(NavRoute.Add.route)
                 }) {
                 Icon(
-                    imageVector = Icons.Filled.Add, contentDescription = "Add Icons",
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "Add Icons",
                     tint = Color.White
                 )
             }
         }
     ) {
-
-            LazyColumn {
-                items(notes) { note ->
-                    NoteItem(note = note, navController = navController)
-
-                }
+        LazyColumn {
+            items(notes) { note ->
+                NoteItem(note = note, navController = navController)
             }
-
+        }
     }
 }
+
 @Composable
-fun NoteItem(note: Note, navController: NavHostController ) {
+fun NoteItem(note: Note, navController: NavHostController) {
+    val noteId = when(DB_TYPE) {
+        TYPE_FIREBASE -> note.firebaseId
+        TYPE_ROOM -> note.id
+        else -> Constants.Keys.EMPTY
+    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Note.route + "/${note.id}")
+                navController.navigate(NavRoute.Note.route + "/${noteId}")
             },
         elevation = 6.dp
-
     ) {
-        Column(modifier = Modifier.padding(vertical = 8.dp),
+        Column(
+            modifier = Modifier.padding(vertical = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = note.title,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
-
             )
-            Text(
-                text = note.subtitle)
+            Text(text = note.subtitle)
         }
-
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun prevMainScreen() {

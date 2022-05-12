@@ -9,15 +9,16 @@ import ru.altfinder.notealt.model.Note
 import ru.altfinder.notealt.utils.Constants.Keys.NOTE_DATABASE
 
 @Database(entities = [Note::class], version = 1)
- abstract class AppRoomDatabase  : RoomDatabase(){
+abstract class AppRoomDatabase  : RoomDatabase(){
 
-     abstract fun getRoomDao(): NoteRoomDao
+    abstract fun  getRoomDao(): NoteRoomDao
 
-     companion object {
-         @Volatile
-         private var INSTANCE: AppRoomDatabase? = null
+    companion object {
 
-        fun getInstance(context: Context) : AppRoomDatabase {
+        @Volatile
+        private var INSTANCE: AppRoomDatabase? = null
+
+        fun getInstance(context: Context) :AppRoomDatabase {
             return if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                     context,
@@ -28,5 +29,5 @@ import ru.altfinder.notealt.utils.Constants.Keys.NOTE_DATABASE
             } else INSTANCE as AppRoomDatabase
         }
 
-     }
+    }
 }

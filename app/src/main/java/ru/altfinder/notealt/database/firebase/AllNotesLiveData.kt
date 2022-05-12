@@ -11,9 +11,8 @@ import ru.altfinder.notealt.model.Note
 
 class AllNotesLiveData: LiveData<List<Note>>() {
     private val mAuth = FirebaseAuth.getInstance()
-    private val database = Firebase.database.reference
+    private val  database = Firebase.database.reference
         .child(mAuth.currentUser?.uid.toString())
-
 
     private val listener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -25,6 +24,7 @@ class AllNotesLiveData: LiveData<List<Note>>() {
         }
 
         override fun onCancelled(error: DatabaseError) {}
+
     }
 
     override fun onActive() {

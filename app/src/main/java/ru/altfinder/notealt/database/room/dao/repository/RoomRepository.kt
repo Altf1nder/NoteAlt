@@ -5,10 +5,9 @@ import ru.altfinder.notealt.database.DatabaseRepository
 import ru.altfinder.notealt.database.room.dao.dao.NoteRoomDao
 import ru.altfinder.notealt.model.Note
 
-class RoomRepository(private val noteRoomDao: NoteRoomDao)  :DatabaseRepository{
+class RoomRepository(private val noteRoomDao: NoteRoomDao) : DatabaseRepository {
     override val readAll: LiveData<List<Note>>
         get() = noteRoomDao.getAllNotes()
-
 
     override suspend fun create(note: Note, onSuccess: () -> Unit) {
         noteRoomDao.addNote(note = note)
@@ -24,9 +23,7 @@ class RoomRepository(private val noteRoomDao: NoteRoomDao)  :DatabaseRepository{
         noteRoomDao.deleteNote(note = note)
         onSuccess()
     }
-
 }
-
 
 
 

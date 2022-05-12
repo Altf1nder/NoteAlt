@@ -25,11 +25,12 @@ import ru.altfinder.notealt.ui.theme.NoteAltTheme
 import ru.altfinder.notealt.utils.*
 import ru.altfinder.notealt.utils.Constants.Keys.FIREBASE_DATABASE
 import ru.altfinder.notealt.utils.Constants.Keys.ROOM_DATABASE
-import ru.altfinder.notealt.utils.Constants.Keys.WHAT_WILL_USE
+import ru.altfinder.notealt.utils.Constants.Keys.WHAT_WILL_WE_USE
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
+
     val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
     var login by remember { mutableStateOf(Constants.Keys.EMPTY) }
@@ -40,12 +41,11 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
         sheetElevation = 5.dp,
         sheetShape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp),
         sheetContent = {
-            Surface{
+            Surface {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(all = 32.dp)
-
                 ) {
                     Text(
                         text = Constants.Keys.LOG_IN,
@@ -70,18 +70,16 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                         onClick = {
                             LOGIN = login
                             PASSWORD = password
-                           viewModel.initDatabase(TYPE_FIREBASE) {
+                            viewModel.initDatabase(TYPE_FIREBASE) {
+                                DB_TYPE = TYPE_FIREBASE
                                 navController.navigate(NavRoute.Main.route)
-                           }
+                            }
                         },
                         enabled = login.isNotEmpty() && password.isNotEmpty()
-
-                    )
-                    {
+                    ) {
                         Text(text = Constants.Keys.SIGN_IN)
                     }
                 }
-
             }
         }
     ) {
@@ -93,10 +91,11 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = WHAT_WILL_USE)
+                Text(text = WHAT_WILL_WE_USE)
                 Button(
                     onClick = {
                         viewModel.initDatabase(TYPE_ROOM) {
+                            DB_TYPE = TYPE_ROOM
                             navController.navigate(route = NavRoute.Main.route)
                         }
 
@@ -109,9 +108,9 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                 }
                 Button(
                     onClick = {
-                       coroutineScope.launch {
-                           bottomSheetState.show()
-                       }
+                        coroutineScope.launch {
+                            bottomSheetState.show()
+                        }
                     },
                     modifier = Modifier
                         .width(200.dp)
@@ -123,8 +122,6 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

@@ -21,10 +21,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NoteAltTheme {
-                 val context = LocalContext.current
+                val context = LocalContext.current
                 val mViewModel: MainViewModel =
                     viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-                Scaffold (
+                Scaffold(
                     topBar = {
                         TopAppBar(
                             title = {
@@ -34,26 +34,20 @@ class MainActivity : ComponentActivity() {
                             contentColor = Color.White,
                             elevation = 12.dp
                         )
-
                     },
                     content = {
-                          Surface(
-                              modifier = Modifier.fillMaxSize(),
-                              color = MaterialTheme.colors.background
-                          ) {
-                                    NotesNavHost(mViewModel)
-                          }
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color =  MaterialTheme.colors.background
+                        ) {
+                            NotesNavHost(mViewModel)
+                        }
                     }
-
-
-                ) 
-
-             }
+                )
+            }
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
