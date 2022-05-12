@@ -38,7 +38,9 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                 onClick = {
                     navController.navigate(NavRoute.Add.route)
                 }) {
-                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Icons",
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "Add Icons",
                     tint = Color.White
                 )
             }
@@ -61,7 +63,7 @@ fun NoteItem(note: Note, navController: NavHostController ) {
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Note.route)
+                navController.navigate(NavRoute.Note.route + "/${note.id}")
             },
         elevation = 6.dp
 

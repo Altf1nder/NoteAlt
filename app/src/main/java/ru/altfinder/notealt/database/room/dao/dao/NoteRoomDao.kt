@@ -2,7 +2,6 @@ package ru.altfinder.notealt.database.room.dao.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.room.Dao
 import ru.altfinder.notealt.model.Note
 
 @Dao

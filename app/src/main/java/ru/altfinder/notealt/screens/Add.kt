@@ -25,6 +25,7 @@ import ru.altfinder.notealt.MainViewModelFactory
 import ru.altfinder.notealt.model.Note
 import ru.altfinder.notealt.navigation.NavRoute
 import ru.altfinder.notealt.ui.theme.NoteAltTheme
+import ru.altfinder.notealt.utils.Constants
 
 @Composable
 fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -38,7 +39,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Добавить новую заметку",
+                text = Constants.Keys.ADD_NEW_NOTE,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 8.dp)
@@ -51,7 +52,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     title = it
                     isButtonEnabled  = title.isNotEmpty()   && subtitle.isNotEmpty()
                                },
-                label = { Text(text = "Note tittle") },
+                label = { Text(text = Constants.Keys.NOTE_TITLE) },
                  isError = title.isEmpty()
             )
             OutlinedTextField(
@@ -60,7 +61,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     subtitle = it
                     isButtonEnabled  = title.isNotEmpty()   && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "Note subtitle") },
+                label = { Text(text = Constants.Keys.NOTE_SUBTITLE) },
                 isError = subtitle.isEmpty()
             )
             Button(
@@ -73,7 +74,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
 
                 }
             ) {
-                Text(text = "Добавить заметку")
+                Text(text = Constants.Keys.ADD_NOTE)
             }
             
                  

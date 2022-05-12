@@ -18,6 +18,10 @@ import ru.altfinder.notealt.MainViewModel
 import ru.altfinder.notealt.MainViewModelFactory
 import ru.altfinder.notealt.navigation.NavRoute
 import ru.altfinder.notealt.ui.theme.NoteAltTheme
+import ru.altfinder.notealt.utils.Constants
+import ru.altfinder.notealt.utils.Constants.Keys.FIREBASE_DATABASE
+import ru.altfinder.notealt.utils.Constants.Keys.ROOM_DATABASE
+import ru.altfinder.notealt.utils.Constants.Keys.WHAT_WILL_USE
 import ru.altfinder.notealt.utils.TYPE_FIREBASE
 import ru.altfinder.notealt.utils.TYPE_ROOM
 
@@ -34,7 +38,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
             horizontalAlignment =  Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Что будем использовать?")
+            Text(text = WHAT_WILL_USE)
             Button(
                 onClick = {
                             mViewModel.initDatabase(TYPE_ROOM) {
@@ -46,7 +50,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Room database ")
+                Text(text = ROOM_DATABASE)
             }
             Button(
                 onClick = {
@@ -59,7 +63,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Firebase database ")
+                Text(text = FIREBASE_DATABASE)
             }
         }
     }
