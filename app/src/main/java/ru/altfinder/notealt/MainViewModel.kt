@@ -9,9 +9,8 @@ import ru.altfinder.notealt.database.firebase.AppFirebaseRepository
 import ru.altfinder.notealt.database.room.dao.AppRoomDatabase
 import ru.altfinder.notealt.database.room.dao.repository.RoomRepository
 import ru.altfinder.notealt.model.Note
-import ru.altfinder.notealt.utils.REPOSITORY
-import ru.altfinder.notealt.utils.TYPE_FIREBASE
-import ru.altfinder.notealt.utils.TYPE_ROOM
+import ru.altfinder.notealt.utils.*
+import java.lang.IllegalArgumentException
 
 class MainViewModel (application: Application) : AndroidViewModel(application) {
 
@@ -66,6 +65,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     fun readAllNotes() = REPOSITORY.readAll
+
+    fun signOut(onSuccess: () -> Unit) {
+        when (DB_TYPE.value) {
+            TYPE_FIREBASE,
+            TYPE_ROOM -> {
+                REPOSITORY.signOut()
+                DB_TYPE.value = Constants.Keys.EMPTY
+                onSuccess()
+            }
+            else -> { Log.d("checkData", "signOut: ELSE: ${DB_TYPE.value}")}
+        }
+    }
 }
 
 class MainViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
