@@ -6,6 +6,7 @@ import ru.altfinder.notealt.database.DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+const val FIREBASE_ID = "firebaseid"
 
 lateinit var REPOSITORY: DatabaseRepository
 lateinit var LOGIN: String
@@ -19,8 +20,8 @@ object Constants {
         const val NOTE_TITLE = "Note Tittle"
         const val NOTE_SUBTITLE= "Note subtitle"
         const val ADD_NOTE= "Add note"
-        const val TITLE= "Title"
-        const val SUBTITLE = "Add subtitle"
+        const val TITLE= "title"
+        const val SUBTITLE = "subtitle"
         const val WHAT_WILL_USE = "Что будем использовать?"
         const val ROOM_DATABASE = "Room database"
         const val FIREBASE_DATABASE = "Firebase database"
