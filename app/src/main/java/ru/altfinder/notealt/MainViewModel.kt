@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.altfinder.notealt.database.firebase.AppFirebaseRepository
 import ru.altfinder.notealt.database.room.dao.AppRoomDatabase
 import ru.altfinder.notealt.database.room.dao.repository.RoomRepository
 import ru.altfinder.notealt.model.Note
@@ -24,6 +25,13 @@ class MainViewModel (application: Application) : AndroidViewModel(application){
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
                 onSuccess()
+            }
+            TYPE_FIREBASE -> {
+               REPOSITORY = AppFirebaseRepository()
+                REPOSITORY.connectToDatabase(
+                    { onSuccess() },
+                    { Log.d("checkData",  "Error:${it}")}
+                )
             }
         }
     }

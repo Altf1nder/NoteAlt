@@ -39,8 +39,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                     navController.navigate(NavRoute.Add.route)
                 }) {
                 Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = "Add Icons",
+                    imageVector = Icons.Filled.Add, contentDescription = "Add Icons",
                     tint = Color.White
                 )
             }
